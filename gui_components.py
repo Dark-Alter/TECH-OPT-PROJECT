@@ -72,7 +72,7 @@ class NetworkVisualizer(FigureCanvas):
 class GameWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("USTHB - Game Theory Load Balancing")
+        self.setWindowTitle("TECH OPT PROJECT - Load Balancing")
         # Default Topology: Braess Paradox[cite: 1]
         self.nodes = ['S', 'A', 'B', 'D']
         self.links = [
@@ -101,34 +101,34 @@ class GameWindow(QWidget):
         content_layout = QVBoxLayout(content)
         
         # 1. Topology Editor Section
-        content_layout.addWidget(QLabel("<b>1. Topology Editor</b>"))
-        self.node_input = QLineEdit(); self.node_input.setPlaceholderText("Node name")
+        content_layout.addWidget(QLabel("<b>1. Editeur de Topology</b>"))
+        self.node_input = QLineEdit(); self.node_input.setPlaceholderText("Nom du Noeud")
         content_layout.addWidget(self.node_input)
-        content_layout.addWidget(QPushButton("Add Node", clicked=self.add_node))
+        content_layout.addWidget(QPushButton("Ajouter Noeud", clicked=self.add_node))
         
         self.combo_s = QComboBox(); self.combo_d = QComboBox()
-        content_layout.addWidget(QLabel("Start Node:")); content_layout.addWidget(self.combo_s)
-        content_layout.addWidget(QLabel("End Node:")); content_layout.addWidget(self.combo_d)
+        content_layout.addWidget(QLabel("Debut:")); content_layout.addWidget(self.combo_s)
+        content_layout.addWidget(QLabel("Fin:")); content_layout.addWidget(self.combo_d)
 
         self.link_u = QComboBox(); self.link_v = QComboBox()
         self.link_a = QDoubleSpinBox(); self.link_b = QDoubleSpinBox()
         self.link_a.setRange(0, 100); self.link_b.setRange(0, 100)
         
         link_form = QFormLayout()
-        link_form.addRow("From:", self.link_u); link_form.addRow("To:", self.link_v)
+        link_form.addRow("De:", self.link_u); link_form.addRow("Vers:", self.link_v)
         link_form.addRow("Coeff a:", self.link_a); link_form.addRow("Const b:", self.link_b)
         content_layout.addLayout(link_form)
-        content_layout.addWidget(QPushButton("Add/Update Link", clicked=self.add_link))
+        content_layout.addWidget(QPushButton("Ajouter/Update Lien", clicked=self.add_link))
 
-        btn_apply = QPushButton("APPLY TOPOLOGY")
+        btn_apply = QPushButton("APPLIQUER TOPOLOGY")
         btn_apply.clicked.connect(self.setup_game)
         btn_apply.setStyleSheet("background-color: #2196F3; color: white; font-weight: bold; padding: 5px;")
         content_layout.addWidget(btn_apply)
 
         # 2. Control Section[cite: 1]
-        content_layout.addWidget(QLabel("<hr><b>2. Game Controls</b>"))
+        content_layout.addWidget(QLabel("<hr><b>2. Controle de Jeux</b>"))
         self.player_spin = QSpinBox(); self.player_spin.setRange(1, 10); self.player_spin.setValue(3)
-        content_layout.addWidget(QLabel("Number of Players:")); content_layout.addWidget(self.player_spin)
+        content_layout.addWidget(QLabel("Nombre de Joueurs:")); content_layout.addWidget(self.player_spin)
         
         self.btn_reset = QPushButton("RESET SIMULATION")
         self.btn_reset.clicked.connect(self.reset_simulation)
